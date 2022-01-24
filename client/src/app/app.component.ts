@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
     }
     
     logout() {
-      this.http.post('logout', {}).pipe( finalize(() => {
+      this.http.post(environment.baseUrl+'logout', {}).pipe( finalize(() => {
         this.app.authenticated = false;
         this.router.navigateByUrl('/login');
       })).subscribe();

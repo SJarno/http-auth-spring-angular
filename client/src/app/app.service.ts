@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AppService {
@@ -15,8 +16,9 @@ export class AppService {
             authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
         } : {});
         /* Place headers to request */
-        this.http.get('user', {headers: headers}).subscribe(response => {
+        this.http.get(environment.baseUrl+'user', {headers: headers}).subscribe(response => {
             let result: any = response;
+            console.log('Vastaus: \n'+result);
             /* Refactor this? */
             if (result['name']) {
                 this.authenticated = true;

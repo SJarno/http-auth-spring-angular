@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//@CrossOrigin(origins = "http://localhost:4200") // for dev
+//@CrossOrigin(origins = "*")
 @RestController
 public class UiController {
 
+    
     @RequestMapping("/resource")
     public Map<String, Object> home() {
         Map<String, Object> model = new HashMap<>();
@@ -20,6 +21,7 @@ public class UiController {
         model.put("content", "Heippa maailma");
         return model;
     }
+    
     @RequestMapping("/user")
     public Principal getUserPrincipal(Principal user) {
         return user;
