@@ -1,5 +1,6 @@
-<div class="alert alert-danger" [hidden]="!error"> <!-- [hidden]="!error" -->
+<div class="alert alert-danger" [hidden]="!error">
 	There was a problem logging in. Please try again.
+	<p>{{error}}</p>
 </div>
 <form role="form" (submit)="login()">
 	<div class="form-group">

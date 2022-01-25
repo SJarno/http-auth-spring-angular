@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 export class AppService {
 
   authenticated = false;
-  
+  errorMessage?: string;
 
   constructor(private http: HttpClient) {
   }
@@ -16,7 +16,7 @@ export class AppService {
             authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
         } : {});
         /* Place headers to request */
-        this.http.get(environment.baseUrl+'user', {headers: headers}).subscribe(response => {
+        this.http.get(environment.baseUrl+'user', {headers: headers}).subscribe((response) => {
             let result: any = response;
             console.log('Vastaus: \n'+result);
             /* Refactor this? */
@@ -24,9 +24,12 @@ export class AppService {
                 this.authenticated = true;
             } else {
                 this.authenticated = false;
+                
             }
             return callback && callback();
         });
+        
+        
 
     }
 

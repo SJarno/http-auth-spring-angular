@@ -8,19 +8,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  credentials = {username: '', password: ''};
-  error:boolean = false;
+  credentials = { username: '', password: '' };
+  error?: string;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
+    /* this.error = app.getError(); */
   }
 
   login() {
     this.app.authenticate(this.credentials, () => {
-        this.router.navigateByUrl('/');
-        this.error = this.app.authenticated;
+      this.router.navigateByUrl('/');
+      
     });
-    
     return false;
   }
+  
 
 }
